@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		12392F6219A3C8F400167FD4 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392F6119A3C8F400167FD4 /* PhotoModel.m */; };
 		12392F6519A3CBC600167FD4 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392F6419A3CBC600167FD4 /* PhotoCell.m */; };
+		12392F6B19A3E78500167FD4 /* colors.png in Resources */ = {isa = PBXBuildFile; fileRef = 12392F6A19A3E78500167FD4 /* colors.png */; };
+		12392F6E19A3E99600167FD4 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392F6D19A3E99600167FD4 /* CameraViewController.m */; };
+		12392F7A19A3F71100167FD4 /* cameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 12392F7919A3F71100167FD4 /* cameraIcon.png */; };
+		12392F8219A415F900167FD4 /* galleryIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 12392F8119A415F900167FD4 /* galleryIcon.png */; };
 		12E6277219A2830C00C8EECC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277119A2830C00C8EECC /* Foundation.framework */; };
 		12E6277419A2830C00C8EECC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277319A2830C00C8EECC /* CoreGraphics.framework */; };
 		12E6277619A2830C00C8EECC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277519A2830C00C8EECC /* UIKit.framework */; };
@@ -40,6 +44,11 @@
 		12392F6119A3C8F400167FD4 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		12392F6319A3CBC600167FD4 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
 		12392F6419A3CBC600167FD4 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		12392F6A19A3E78500167FD4 /* colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colors.png; sourceTree = "<group>"; };
+		12392F6C19A3E99600167FD4 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		12392F6D19A3E99600167FD4 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		12392F7919A3F71100167FD4 /* cameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIcon.png; sourceTree = "<group>"; };
+		12392F8119A415F900167FD4 /* galleryIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galleryIcon.png; sourceTree = "<group>"; };
 		12E6276E19A2830C00C8EECC /* capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E6277119A2830C00C8EECC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12E6277319A2830C00C8EECC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -126,11 +135,16 @@
 				12E6278119A2830C00C8EECC /* AppDelegate.m */,
 				12E627A019A2832B00C8EECC /* homeViewController.h */,
 				12E627A119A2832B00C8EECC /* homeViewController.m */,
+				12392F6C19A3E99600167FD4 /* CameraViewController.h */,
+				12392F6D19A3E99600167FD4 /* CameraViewController.m */,
 				12392F6019A3C8F400167FD4 /* PhotoModel.h */,
 				12392F6119A3C8F400167FD4 /* PhotoModel.m */,
 				12392F6319A3CBC600167FD4 /* PhotoCell.h */,
 				12392F6419A3CBC600167FD4 /* PhotoCell.m */,
 				12E6278319A2830C00C8EECC /* Images.xcassets */,
+				12392F6A19A3E78500167FD4 /* colors.png */,
+				12392F7919A3F71100167FD4 /* cameraIcon.png */,
+				12392F8119A415F900167FD4 /* galleryIcon.png */,
 				12E6277819A2830C00C8EECC /* Supporting Files */,
 			);
 			path = capture;
@@ -242,8 +256,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12392F6B19A3E78500167FD4 /* colors.png in Resources */,
 				12E6277C19A2830C00C8EECC /* InfoPlist.strings in Resources */,
 				12E6278419A2830C00C8EECC /* Images.xcassets in Resources */,
+				12392F7A19A3F71100167FD4 /* cameraIcon.png in Resources */,
+				12392F8219A415F900167FD4 /* galleryIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +315,7 @@
 				12E6278219A2830C00C8EECC /* AppDelegate.m in Sources */,
 				12392F6519A3CBC600167FD4 /* PhotoCell.m in Sources */,
 				12E6277E19A2830C00C8EECC /* main.m in Sources */,
+				12392F6E19A3E99600167FD4 /* CameraViewController.m in Sources */,
 				12392F6219A3C8F400167FD4 /* PhotoModel.m in Sources */,
 				12E627A219A2832C00C8EECC /* homeViewController.m in Sources */,
 			);

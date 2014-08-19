@@ -14,18 +14,15 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 250, 250)];
+        self.titleLabel = [[UILabel alloc]initWithFrame: CGRectMake(5, 135, 125, 50)];
+        self.descriptionView = [[UITextView alloc] initWithFrame: CGRectMake(5, 190, 100, 100)];
+        
+        [self.contentView addSubview: self.descriptionView];
+        [self.contentView addSubview: self.imageView];
+        [self.contentView addSubview: self.imageView];
     }
     return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

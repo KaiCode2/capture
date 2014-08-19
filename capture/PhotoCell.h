@@ -11,7 +11,7 @@
 @interface PhotoCell : UICollectionViewCell
 
 @property (strong, nonatomic)UILabel *titleLabel;
-@property (strong, nonatomic)UILabel *descriptionLabel;
+@property (strong, nonatomic)UITextView *descriptionView;
 @property (strong, nonatomic)UIImageView *imageView;
 
 @end

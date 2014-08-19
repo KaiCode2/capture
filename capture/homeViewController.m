@@ -7,6 +7,8 @@
 //
 
 #import "homeViewController.h"
+#import "PhotoCell.h"
+#import "PhotoModel.h"
 
 @interface homeViewController ()
 
@@ -14,34 +16,43 @@
 
 @implementation homeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    
-    CGFloat itemSpacing = 20.0;
-    layout.itemSize = CGSizeMake(120.0, 120.0);
-    layout.minimumInteritemSpacing = itemSpacing;
-    layout.minimumLineSpacing = itemSpacing;
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.headerReferenceSize = CGSizeMake(50.0, 50.0);
-    layout.footerReferenceSize = CGSizeMake(50.0, 50.0);
-    
-    return (self = [super initWithCollectionViewLayout:layout]);
+    self = [super initWithCollectionViewLayout:layout];
+    if (self) {
+        UIImage *image = [UIImage imageNamed:@"galleryIcon.png"];
+        UITabBarItem *tabBar = [[UITabBarItem alloc]initWithTitle:@"" image: image selectedImage:nil];
+        self.tabBarItem = tabBar;
+        
+        CGFloat itemSpacing = 5.0;
+        layout.minimumInteritemSpacing = itemSpacing;
+        layout.itemSize = CGSizeMake(100, 100);
+        layout.minimumLineSpacing = itemSpacing;
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.headerReferenceSize = CGSizeMake(20.0, 20.0);
+        layout.footerReferenceSize = CGSizeMake(50.0, 50.0);
+    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"colors.png"]];
+    self.collectionView.backgroundView = imageView;
     [self.collectionView registerClass: [UICollectionViewCell class] forCellWithReuseIdentifier: @"Photo"];
-    
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{    return 100;
+
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 100;
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"Photo" forIndexPath: indexPath];
+    PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"Photo" forIndexPath: indexPath];
     cell.backgroundColor = [UIColor redColor];
     
     return cell;
