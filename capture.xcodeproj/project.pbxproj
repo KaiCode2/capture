@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12392F6219A3C8F400167FD4 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392F6119A3C8F400167FD4 /* PhotoModel.m */; };
+		12392F6519A3CBC600167FD4 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392F6419A3CBC600167FD4 /* PhotoCell.m */; };
 		12E6277219A2830C00C8EECC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277119A2830C00C8EECC /* Foundation.framework */; };
 		12E6277419A2830C00C8EECC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277319A2830C00C8EECC /* CoreGraphics.framework */; };
 		12E6277619A2830C00C8EECC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277519A2830C00C8EECC /* UIKit.framework */; };
@@ -34,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12392F6019A3C8F400167FD4 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
+		12392F6119A3C8F400167FD4 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
+		12392F6319A3CBC600167FD4 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
+		12392F6419A3CBC600167FD4 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
 		12E6276E19A2830C00C8EECC /* capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E6277119A2830C00C8EECC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12E6277319A2830C00C8EECC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -120,6 +126,10 @@
 				12E6278119A2830C00C8EECC /* AppDelegate.m */,
 				12E627A019A2832B00C8EECC /* homeViewController.h */,
 				12E627A119A2832B00C8EECC /* homeViewController.m */,
+				12392F6019A3C8F400167FD4 /* PhotoModel.h */,
+				12392F6119A3C8F400167FD4 /* PhotoModel.m */,
+				12392F6319A3CBC600167FD4 /* PhotoCell.h */,
+				12392F6419A3CBC600167FD4 /* PhotoCell.m */,
 				12E6278319A2830C00C8EECC /* Images.xcassets */,
 				12E6277819A2830C00C8EECC /* Supporting Files */,
 			);
@@ -286,7 +296,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				12E6278219A2830C00C8EECC /* AppDelegate.m in Sources */,
+				12392F6519A3CBC600167FD4 /* PhotoCell.m in Sources */,
 				12E6277E19A2830C00C8EECC /* main.m in Sources */,
+				12392F6219A3C8F400167FD4 /* PhotoModel.m in Sources */,
 				12E627A219A2832C00C8EECC /* homeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
