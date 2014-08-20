@@ -8,8 +8,11 @@
 
 #import "UpdateViewController.h"
 #import "CameraViewController.h"
+#import <GPUImage/GPUImage.h>
 
 @interface UpdateViewController ()
+
+@property (nonatomic) UIImageView * photoImageView;
 
 @end
 
@@ -21,11 +24,10 @@
     if (self) {
 //        CameraViewController *cameraViewController = [[CameraViewController alloc]init];
         
-        self.theImage = [[UIImage alloc]init];
         UIImageView *photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, 63, 320, 320)];
         photoImageView.backgroundColor = [UIColor greenColor];
-        photoImageView.image = self.theImage;
         
+        self.photoImageView = photoImageView;
         [self.view addSubview:photoImageView];
         
         NSLog(@"the image is %@", self.theImage);
@@ -38,6 +40,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor blackColor];
+}
+
+- (void)setTheImage:(UIImage *)theImage
+{
+    _theImage = theImage;
+    self.photoImageView.image = theImage;
 }
 
 - (void)didReceiveMemoryWarning
