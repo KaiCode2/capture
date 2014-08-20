@@ -7,8 +7,11 @@
 //
 
 #import "CameraViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "UpdateViewController.h"
 
-@interface CameraViewController ()
+@interface CameraViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate>
 
 @end
 
@@ -21,6 +24,15 @@
         UIImage *image = [UIImage imageNamed:@"cameraIcon.png"];
         UITabBarItem *tabBar = [[UITabBarItem alloc]initWithTitle:@"" image: image selectedImage:nil];
         self.tabBarItem = tabBar;
+        
+        NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc]initWithString: @"Capture"];
+        [attrStr addAttribute: NSForegroundColorAttributeName value: [UIColor colorWithRed:0 green:0 blue:8 alpha:0.6] range: NSMakeRange(0, 7)];
+        [attrStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"SnellRoundhand-Black" size:38.0] range:NSMakeRange(0, 7)];
+        
+        UILabel *titleLabel = [UILabel new];
+        titleLabel.attributedText = attrStr;
+        [titleLabel sizeToFit];
+        self.navigationItem.titleView = titleLabel;
     }
     return self;
 }
@@ -29,6 +41,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    //TODO take library and make it store the updated image
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -85,6 +99,23 @@
     
     [self presentViewController:picker animated:YES completion:NULL];
 }
+
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+    if(!img) img = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    self.selectedImage = img;
+    
+    NSLog(@"img is %@", img.description);
+    NSLog(@"selectedImage is %@", self.selectedImage.description);
+    UpdateViewController *updateViewController = [[UpdateViewController alloc]init];
+    [self.navigationController pushViewController:updateViewController animated: YES];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        updateViewController.theImage = self.selectedImage;
+    }];
+}
+
 
 /*
 #pragma mark - Navigation

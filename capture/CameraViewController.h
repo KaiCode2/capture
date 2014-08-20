@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CameraViewController : UIViewController <UIActionSheetDelegate>
+@interface CameraViewController : UIViewController
 
+@property (strong, nonatomic)UIImage *selectedImage;
 
 @end

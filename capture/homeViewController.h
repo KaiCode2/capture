@@ -11,5 +11,6 @@
 
 @interface homeViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
+@property (strong, nonatomic) NSMutableArray *photos;
 
 @end

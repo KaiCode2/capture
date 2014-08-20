@@ -25,7 +25,7 @@
         UITabBarItem *tabBar = [[UITabBarItem alloc]initWithTitle:@"" image: image selectedImage:nil];
         self.tabBarItem = tabBar;
         
-        CGFloat itemSpacing = 5.0;
+        CGFloat itemSpacing = 10.0;
         layout.minimumInteritemSpacing = itemSpacing;
         layout.itemSize = CGSizeMake(100, 100);
         layout.minimumLineSpacing = itemSpacing;
@@ -43,11 +43,13 @@
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"colors.png"]];
     self.collectionView.backgroundView = imageView;
     [self.collectionView registerClass: [UICollectionViewCell class] forCellWithReuseIdentifier: @"Photo"];
+    self.photos = [[NSMutableArray alloc] init];
 }
 
 
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+//    return self.photos.count;
     return 100;
 }
 
@@ -57,6 +59,8 @@
     
     return cell;
 }
+
+
 /*
 #pragma mark - Navigation
 
