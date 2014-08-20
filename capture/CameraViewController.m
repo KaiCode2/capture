@@ -110,6 +110,7 @@
     NSLog(@"img is %@", img.description);
     NSLog(@"selectedImage is %@", self.selectedImage.description);
     UpdateViewController *updateViewController = [[UpdateViewController alloc]init];
+    updateViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:updateViewController animated: YES];
     [picker dismissViewControllerAnimated:YES completion:^{
         updateViewController.theImage = self.selectedImage;
