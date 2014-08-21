@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilterScrollView.h"
 
-@interface UpdateViewController : UIViewController
+@interface UpdateViewController : UIViewController <UIScrollViewDelegate, FilterScrollViewDelegate>
 
 @property (strong, nonatomic) UIImage *theImage;
 

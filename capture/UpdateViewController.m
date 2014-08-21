@@ -8,7 +8,7 @@
 
 #import "UpdateViewController.h"
 #import "CameraViewController.h"
-#import <GPUImage/GPUImage.h>
+#import <GPUImage.h>
 
 @interface UpdateViewController ()
 
@@ -18,7 +18,10 @@
 
 @end
 
-@implementation UpdateViewController
+@implementation UpdateViewController{
+    GPUImageBrightnessFilter *brightnessFilter;
+    GPUImagePicture *sourcePicture;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +30,11 @@
         UIImageView *photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, 63, 320, 320)];
         self.photoImageView = photoImageView;
         [self.view addSubview:photoImageView];
+        
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(presentNextViewController)];
+        
+        self.navigationItem.rightBarButtonItem = done;
+        
         NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc]initWithString: @"Capture"];
         [attrStr addAttribute: NSForegroundColorAttributeName value: [UIColor colorWithRed:0 green:0 blue:8 alpha:0.6] range: NSMakeRange(0, 7)];
         [attrStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"SnellRoundhand-Black" size:38.0] range:NSMakeRange(0, 7)];
@@ -64,10 +72,17 @@
     [self.view addSubview:self.slidersButton];
 }
 
-- (void)setTheImage:(UIImage *)theImage
-{
+- (void)setTheImage:(UIImage *)theImage{
     _theImage = theImage;
-    self.photoImageView.image = theImage;
+    sourcePicture = [[GPUImagePicture alloc] initWithImage:theImage];
+    brightnessFilter = [[GPUImageBrightnessFilter alloc]init];
+    brightnessFilter.brightness = 0;
+    [sourcePicture addTarget:brightnessFilter];
+    [brightnessFilter useNextFrameForImageCapture];
+    [sourcePicture processImage];
+    UIImage *filteredimage = [brightnessFilter imageFromCurrentFramebuffer];
+    _photoImageView.image = [[UIImage alloc]init];
+    _photoImageView.image = filteredimage;
 }
 
 #pragma mark - set up filters
@@ -75,11 +90,36 @@
 -(void)customFilers{
     self.filterButton.hidden = YES;
     self.slidersButton.hidden = YES;
+    
+    FilterScrollView *slidersView = [[FilterScrollView alloc] initWithImage: self.theImage];
+    slidersView.frame = CGRectMake(0, 383, 320, 200);
+    slidersView.filterDelegate = self;
+    [self.view addSubview:slidersView];
 }
+
+//implement the delegate method here
 
 -(void)setFilters{
     self.filterButton.hidden = YES;
     self.slidersButton.hidden = YES;
+}
+
+-(void)brightnessSliderDidChangeValue:(CGFloat)value{
+    NSLog(@"the value is %f", value);
+    
+    brightnessFilter.brightness = value;
+    [brightnessFilter useNextFrameForImageCapture];
+    [sourcePicture processImage];
+    _photoImageView.image = [brightnessFilter imageFromCurrentFramebuffer];
+}
+
+
+
+#pragma mark - next view controller
+
+-(void)presentNextViewController{
+    //TODO make the next view controller and add it
+//    [self presentViewController: animated:YES completion:NULL];
 }
 
 

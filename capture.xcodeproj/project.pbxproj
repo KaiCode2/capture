@@ -18,6 +18,7 @@
 		12392F9119A5195D00167FD4 /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392F9019A5195D00167FD4 /* UpdateViewController.m */; };
 		12392F9919A5344100167FD4 /* Sliders-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 12392F9819A5344100167FD4 /* Sliders-512.png */; };
 		12392F9B19A541B800167FD4 /* tabs.png in Resources */ = {isa = PBXBuildFile; fileRef = 12392F9A19A541B800167FD4 /* tabs.png */; };
+		12392FA719A55C2E00167FD4 /* FilterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392FA619A55C2E00167FD4 /* FilterScrollView.m */; };
 		12E6277219A2830C00C8EECC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277119A2830C00C8EECC /* Foundation.framework */; };
 		12E6277419A2830C00C8EECC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277319A2830C00C8EECC /* CoreGraphics.framework */; };
 		12E6277619A2830C00C8EECC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277519A2830C00C8EECC /* UIKit.framework */; };
@@ -61,6 +62,8 @@
 		12392F9019A5195D00167FD4 /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		12392F9819A5344100167FD4 /* Sliders-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sliders-512.png"; sourceTree = "<group>"; };
 		12392F9A19A541B800167FD4 /* tabs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabs.png; sourceTree = "<group>"; };
+		12392FA519A55C2E00167FD4 /* FilterScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterScrollView.h; sourceTree = "<group>"; };
+		12392FA619A55C2E00167FD4 /* FilterScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterScrollView.m; sourceTree = "<group>"; };
 		12E6276E19A2830C00C8EECC /* capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E6277119A2830C00C8EECC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12E6277319A2830C00C8EECC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,6 +135,32 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		12392FA819A55C3700167FD4 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				12392FA519A55C2E00167FD4 /* FilterScrollView.h */,
+				12392FA619A55C2E00167FD4 /* FilterScrollView.m */,
+				12392F6019A3C8F400167FD4 /* PhotoModel.h */,
+				12392F6119A3C8F400167FD4 /* PhotoModel.m */,
+				12392F6319A3CBC600167FD4 /* PhotoCell.h */,
+				12392F6419A3CBC600167FD4 /* PhotoCell.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		12392FA919A55C6100167FD4 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				12E627A019A2832B00C8EECC /* homeViewController.h */,
+				12E627A119A2832B00C8EECC /* homeViewController.m */,
+				12392F6C19A3E99600167FD4 /* CameraViewController.h */,
+				12392F6D19A3E99600167FD4 /* CameraViewController.m */,
+				12392F8F19A5195D00167FD4 /* UpdateViewController.h */,
+				12392F9019A5195D00167FD4 /* UpdateViewController.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		12E6276519A2830B00C8EECC = {
 			isa = PBXGroup;
 			children = (
@@ -170,17 +199,9 @@
 			children = (
 				12E6278019A2830C00C8EECC /* AppDelegate.h */,
 				12E6278119A2830C00C8EECC /* AppDelegate.m */,
-				12E627A019A2832B00C8EECC /* homeViewController.h */,
-				12E627A119A2832B00C8EECC /* homeViewController.m */,
-				12392F6C19A3E99600167FD4 /* CameraViewController.h */,
-				12392F6D19A3E99600167FD4 /* CameraViewController.m */,
-				12392F8F19A5195D00167FD4 /* UpdateViewController.h */,
-				12392F9019A5195D00167FD4 /* UpdateViewController.m */,
-				12392F6019A3C8F400167FD4 /* PhotoModel.h */,
-				12392F6119A3C8F400167FD4 /* PhotoModel.m */,
-				12392F6319A3CBC600167FD4 /* PhotoCell.h */,
-				12392F6419A3CBC600167FD4 /* PhotoCell.m */,
 				12E6278319A2830C00C8EECC /* Images.xcassets */,
+				12392FA919A55C6100167FD4 /* views */,
+				12392FA819A55C3700167FD4 /* models */,
 				12392F8619A42E3700167FD4 /* catagories */,
 				12392F8519A42E0200167FD4 /* images */,
 				12E6277819A2830C00C8EECC /* Supporting Files */,
@@ -352,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12392FA719A55C2E00167FD4 /* FilterScrollView.m in Sources */,
 				12392F8919A42E5700167FD4 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				12E6278219A2830C00C8EECC /* AppDelegate.m in Sources */,
 				12392F6519A3CBC600167FD4 /* PhotoCell.m in Sources */,

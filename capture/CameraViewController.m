@@ -15,7 +15,9 @@
 
 @end
 
-@implementation CameraViewController
+@implementation CameraViewController{
+    UIActionSheet *photoSheet;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +44,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    self.picker  = [[UIImagePickerController alloc] init];
+    self.picker.delegate = self;
+    self.picker.allowsEditing = YES;
     //TODO take library and make it store the updated image
 }
 
@@ -49,8 +54,12 @@
     [super viewDidAppear: YES];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"colors.png"]];
+    UIButton *showButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 1000, 1000)];
+    [showButton addTarget:self action:@selector(showActionSheet) forControlEvents:UIControlEventTouchUpInside];
+    showButton.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:showButton];
     
-    UIActionSheet *photoSheet = [[UIActionSheet alloc]initWithTitle:@"Choose a photo source."
+    photoSheet = [[UIActionSheet alloc]initWithTitle:@"Choose a photo source."
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel"
                                              destructiveButtonTitle:nil
@@ -59,6 +68,9 @@
     [photoSheet showInView: self.view];
 }
 
+-(void)showActionSheet{
+    [photoSheet showInView: self.view];
+}
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
@@ -76,28 +88,20 @@
 #pragma mark - photo pickers
 
 -(void) showCamera {
-    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     }else{
         UIAlertView *noCameraAlert = [[UIAlertView alloc] initWithTitle:@"Oh no!" message: @"It appears you have no camera availible or you didn't let us you yours." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [noCameraAlert show];
         return;
     }
     
-    [self presentViewController:picker animated:YES completion:NULL];
+    [self presentViewController:self.picker animated:YES completion:NULL];
 }
 
 -(void) showGallery {
-    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    
-    [self presentViewController:picker animated:YES completion:NULL];
+    [self.picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self presentViewController:self.picker animated:YES completion:NULL];
 }
 
 

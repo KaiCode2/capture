@@ -11,5 +11,7 @@
 @interface CameraViewController : UIViewController
 
 @property (strong, nonatomic)UIImage *selectedImage;
+@property (strong, nonatomic) UIImagePickerController *picker;
+
 
 @end
