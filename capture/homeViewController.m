@@ -53,7 +53,7 @@
     // Do any additional setup after loading the view.
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"colors.png"]];
     self.collectionView.backgroundView = imageView;
-    [self.collectionView registerClass: [UICollectionViewCell class] forCellWithReuseIdentifier: @"Photo"];
+    [self.collectionView registerClass: [PhotoCell class] forCellWithReuseIdentifier: @"Photo"];
 }
 
 
@@ -63,14 +63,20 @@
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"Photo" forIndexPath: indexPath];
-    cell.imageView.image = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:0];
-    cell.titleLabel.text = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:1];
-    cell.descriptionView.text = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:2];
-    cell.backgroundColor = [UIColor redColor];
+    
+    PhotoModel* p = (PhotoModel*)[self.photos objectAtIndex:indexPath.row];
+    
+    
+    cell.imageView.image = p.Image;
+    cell.titleLabel.text = p.Title;
+    cell.descriptionView.text = p.Description;
+    
+    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"colors.png"]];
+    
+    [cell.contentView.superview setClipsToBounds:YES];
     
     return cell;
 }
-
 
 /*
 #pragma mark - Navigation

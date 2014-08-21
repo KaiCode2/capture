@@ -47,7 +47,7 @@
         titleField.layer.masksToBounds = YES;
         descriptionField.layer.cornerRadius = 10;
         descriptionField.layer.masksToBounds = YES;
-        photoImageView.layer.cornerRadius = 7.5;
+        photoImageView.layer.cornerRadius = 10;
         photoImageView.layer.masksToBounds = YES;
         [self.view addSubview:descriptionField];
         [self.view addSubview:titleField];

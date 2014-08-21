@@ -14,9 +14,9 @@
 {
     self = [super init];
     if (self) {
-        _Title = title;
-        _Description = description;
-        _Image = image;
+        self.Title = title;
+        self.Description = description;
+        self.Image = image;
     }
     return self;
 }

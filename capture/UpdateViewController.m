@@ -75,6 +75,10 @@
     [self.view addSubview:self.slidersButton];
 }
 
+-(void)didReceiveMemoryWarning{
+    NSLog(@"memory warning ahhhhh!!!");
+}
+
 - (void)setTheImage:(UIImage *)theImage{
     _theImage = theImage;
     sourcePicture = [[GPUImagePicture alloc] initWithImage:theImage];

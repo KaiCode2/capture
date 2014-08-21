@@ -15,4 +15,6 @@
 @property (strong, nonatomic) NSString *Description;
 
 - (instancetype)initWithTitle:(NSString *)title description:(NSString *)description image:(UIImage *)image;
+
+
 @end
