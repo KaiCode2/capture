@@ -10,10 +10,15 @@
 
 @implementation PhotoModel
 
--(void)setTitle:(NSString *)title description:(NSString *)description image:(UIImage *)image{
-    _Title = title;
-    _Description = description;
-    _Image = image;
+- (instancetype)initWithTitle:(NSString *)title description:(NSString *)description image:(UIImage *)image
+{
+    self = [super init];
+    if (self) {
+        _Title = title;
+        _Description = description;
+        _Image = image;
+    }
+    return self;
 }
 
 @end

@@ -84,7 +84,7 @@
         [self addSubview:brightnesSlider];
         //
         self.scrollEnabled = YES;
-        self.contentSize = CGSizeMake(self.frame.size.width, 1000);
+        self.contentSize = CGSizeMake(self.frame.size.width, 450);
         self.backgroundColor = [UIColor grayColor];
     }
     return self;

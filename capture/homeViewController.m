@@ -18,6 +18,8 @@
 
 - (id)init
 {
+    self.photos = [[NSMutableArray alloc] init];
+    
     NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc]initWithString: @"Capture"];
     [attrStr addAttribute: NSForegroundColorAttributeName value: [UIColor colorWithRed:0 green:0 blue:8 alpha:0.6] range: NSMakeRange(0, 7)];
     [attrStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"SnellRoundhand-Black" size:38.0] range:NSMakeRange(0, 7)];
@@ -52,7 +54,6 @@
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"colors.png"]];
     self.collectionView.backgroundView = imageView;
     [self.collectionView registerClass: [UICollectionViewCell class] forCellWithReuseIdentifier: @"Photo"];
-    self.photos = [[NSMutableArray alloc] init];
 }
 
 
@@ -62,9 +63,9 @@
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"Photo" forIndexPath: indexPath];
-//    cell.imageView.image = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:0];
-//    cell.titleLabel.text = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:1];
-//    cell.descriptionView.text = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:2];
+    cell.imageView.image = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:0];
+    cell.titleLabel.text = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:1];
+    cell.descriptionView.text = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:2];
     cell.backgroundColor = [UIColor redColor];
     
     return cell;

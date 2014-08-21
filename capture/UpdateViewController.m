@@ -30,12 +30,12 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
         UIImageView *photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, 63, 320, 320)];
         self.photoImageView = photoImageView;
         [self.view addSubview:photoImageView];
         
         UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(presentNextViewController)];
-        
         
         self.navigationItem.rightBarButtonItem = done;
         
@@ -93,10 +93,8 @@
     [RGBFilter useNextFrameForImageCapture];
     [RGBFilter addTarget:hazeFilter];
     [hazeFilter useNextFrameForImageCapture];
-    UIImage *filteredimage = [RGBFilter imageFromCurrentFramebuffer];
     [sourcePicture processImage];
-    _photoImageView.image = [[UIImage alloc]init];
-    _photoImageView.image = filteredimage;
+    _photoImageView.image = [RGBFilter imageFromCurrentFramebuffer];
 }
 
 #pragma mark - set up filters

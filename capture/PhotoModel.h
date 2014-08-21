@@ -14,6 +14,5 @@
 @property (strong, nonatomic) NSString *Title;
 @property (strong, nonatomic) NSString *Description;
 
--(void)setTitle:(NSString *)title description:(NSString*)description image:(UIImage*)image;
-
+- (instancetype)initWithTitle:(NSString *)title description:(NSString *)description image:(UIImage *)image;
 @end

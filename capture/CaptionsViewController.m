@@ -47,6 +47,8 @@
         titleField.layer.masksToBounds = YES;
         descriptionField.layer.cornerRadius = 10;
         descriptionField.layer.masksToBounds = YES;
+        photoImageView.layer.cornerRadius = 7.5;
+        photoImageView.layer.masksToBounds = YES;
         [self.view addSubview:descriptionField];
         [self.view addSubview:titleField];
         
@@ -58,8 +60,6 @@
         titleLabel.attributedText = attrStr;
         [titleLabel sizeToFit];
         self.navigationItem.titleView = titleLabel;
-        
-        self.view.backgroundColor = [UIColor blackColor];
     }
     
     return self;
@@ -69,6 +69,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"colors.png"]];
 }
 
 -(void)setTheImage:(UIImage *)theImage{
@@ -82,9 +83,14 @@
 }
 
 -(void)presentNextViewController{
-    self.photoModel = [[PhotoModel alloc]init];
-    [self.photoModel setTitle:titleField.text description:descriptionField.text image:photoImageView.image];
+    self.photoModel = [[PhotoModel alloc]initWithTitle:titleField.text description:descriptionField.text image:photoImageView.image];
+    
+//    self.photoModel.Image = photoImageView.image;
+//    self.photoModel.Title = titleField.text;
+//    self.photoModel.Description = descriptionField.text;
+//    [self.photoModel setTitle:titleField.text description:descriptionField.text image:photoImageView.image];
 
+    
     homeViewController *gallery = [[[[self.tabBarController viewControllers] objectAtIndex:1] viewControllers] firstObject];
     
     [gallery.photos addObject: self.photoModel];
