@@ -19,6 +19,8 @@
 		12392F9919A5344100167FD4 /* Sliders-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 12392F9819A5344100167FD4 /* Sliders-512.png */; };
 		12392F9B19A541B800167FD4 /* tabs.png in Resources */ = {isa = PBXBuildFile; fileRef = 12392F9A19A541B800167FD4 /* tabs.png */; };
 		12392FA719A55C2E00167FD4 /* FilterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392FA619A55C2E00167FD4 /* FilterScrollView.m */; };
+		12392FAD19A6647F00167FD4 /* CaptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392FAC19A6647F00167FD4 /* CaptionsViewController.m */; };
+		12392FAF19A6754C00167FD4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12392FAE19A6754C00167FD4 /* QuartzCore.framework */; };
 		12E6277219A2830C00C8EECC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277119A2830C00C8EECC /* Foundation.framework */; };
 		12E6277419A2830C00C8EECC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277319A2830C00C8EECC /* CoreGraphics.framework */; };
 		12E6277619A2830C00C8EECC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277519A2830C00C8EECC /* UIKit.framework */; };
@@ -64,6 +66,9 @@
 		12392F9A19A541B800167FD4 /* tabs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabs.png; sourceTree = "<group>"; };
 		12392FA519A55C2E00167FD4 /* FilterScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterScrollView.h; sourceTree = "<group>"; };
 		12392FA619A55C2E00167FD4 /* FilterScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterScrollView.m; sourceTree = "<group>"; };
+		12392FAB19A6647F00167FD4 /* CaptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptionsViewController.h; sourceTree = "<group>"; };
+		12392FAC19A6647F00167FD4 /* CaptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptionsViewController.m; sourceTree = "<group>"; };
+		12392FAE19A6754C00167FD4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		12E6276E19A2830C00C8EECC /* capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E6277119A2830C00C8EECC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12E6277319A2830C00C8EECC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -91,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12392FAF19A6754C00167FD4 /* QuartzCore.framework in Frameworks */,
 				12392F8419A423E200167FD4 /* AssetsLibrary.framework in Frameworks */,
 				12E6277419A2830C00C8EECC /* CoreGraphics.framework in Frameworks */,
 				12E6277619A2830C00C8EECC /* UIKit.framework in Frameworks */,
@@ -157,6 +163,8 @@
 				12392F6D19A3E99600167FD4 /* CameraViewController.m */,
 				12392F8F19A5195D00167FD4 /* UpdateViewController.h */,
 				12392F9019A5195D00167FD4 /* UpdateViewController.m */,
+				12392FAB19A6647F00167FD4 /* CaptionsViewController.h */,
+				12392FAC19A6647F00167FD4 /* CaptionsViewController.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -184,6 +192,7 @@
 		12E6277019A2830C00C8EECC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				12392FAE19A6754C00167FD4 /* QuartzCore.framework */,
 				12392F8319A423E200167FD4 /* AssetsLibrary.framework */,
 				12E6277119A2830C00C8EECC /* Foundation.framework */,
 				12E6277319A2830C00C8EECC /* CoreGraphics.framework */,
@@ -287,6 +296,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = kai.don.aldag;
 				TargetAttributes = {
+					12E6276D19A2830C00C8EECC = {
+						DevelopmentTeam = E43A73LHYV;
+					};
 					12E6278819A2830C00C8EECC = {
 						TestTargetID = 12E6276D19A2830C00C8EECC;
 					};
@@ -378,6 +390,7 @@
 				12E6278219A2830C00C8EECC /* AppDelegate.m in Sources */,
 				12392F6519A3CBC600167FD4 /* PhotoCell.m in Sources */,
 				12392F9119A5195D00167FD4 /* UpdateViewController.m in Sources */,
+				12392FAD19A6647F00167FD4 /* CaptionsViewController.m in Sources */,
 				12E6277E19A2830C00C8EECC /* main.m in Sources */,
 				12392F6E19A3E99600167FD4 /* CameraViewController.m in Sources */,
 				12392F6219A3C8F400167FD4 /* PhotoModel.m in Sources */,
@@ -499,11 +512,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "capture/capture-Prefix.pch";
 				INFOPLIST_FILE = "capture/capture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -514,11 +530,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "capture/capture-Prefix.pch";
 				INFOPLIST_FILE = "capture/capture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

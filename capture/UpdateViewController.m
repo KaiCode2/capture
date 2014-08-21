@@ -8,6 +8,7 @@
 
 #import "UpdateViewController.h"
 #import "CameraViewController.h"
+#import "CaptionsViewController.h"
 #import <GPUImage.h>
 
 @interface UpdateViewController ()
@@ -20,6 +21,8 @@
 
 @implementation UpdateViewController{
     GPUImageBrightnessFilter *brightnessFilter;
+    GPUImageRGBFilter *RGBFilter;
+    GPUImageHazeFilter *hazeFilter;
     GPUImagePicture *sourcePicture;
 }
 
@@ -32,6 +35,7 @@
         [self.view addSubview:photoImageView];
         
         UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(presentNextViewController)];
+        
         
         self.navigationItem.rightBarButtonItem = done;
         
@@ -76,11 +80,22 @@
     _theImage = theImage;
     sourcePicture = [[GPUImagePicture alloc] initWithImage:theImage];
     brightnessFilter = [[GPUImageBrightnessFilter alloc]init];
+    hazeFilter = [[GPUImageHazeFilter alloc]init];
+    RGBFilter = [[GPUImageRGBFilter alloc]init];
     brightnessFilter.brightness = 0;
+    RGBFilter.red = 1;
+    RGBFilter.blue = 1;
+    RGBFilter.green = 1;
+    hazeFilter.distance = 0;
+    hazeFilter.slope = 0;
     [sourcePicture addTarget:brightnessFilter];
     [brightnessFilter useNextFrameForImageCapture];
+    [brightnessFilter addTarget:RGBFilter];
+    [RGBFilter useNextFrameForImageCapture];
+    [RGBFilter addTarget:hazeFilter];
+    [hazeFilter useNextFrameForImageCapture];
+    UIImage *filteredimage = [RGBFilter imageFromCurrentFramebuffer];
     [sourcePicture processImage];
-    UIImage *filteredimage = [brightnessFilter imageFromCurrentFramebuffer];
     _photoImageView.image = [[UIImage alloc]init];
     _photoImageView.image = filteredimage;
 }
@@ -104,22 +119,83 @@
     self.slidersButton.hidden = YES;
 }
 
+#pragma mark - protocol implementations
+
 -(void)brightnessSliderDidChangeValue:(CGFloat)value{
     NSLog(@"the value is %f", value);
     
     brightnessFilter.brightness = value;
     [brightnessFilter useNextFrameForImageCapture];
+    [RGBFilter useNextFrameForImageCapture];
+    [hazeFilter useNextFrameForImageCapture];
     [sourcePicture processImage];
-    _photoImageView.image = [brightnessFilter imageFromCurrentFramebuffer];
+    _photoImageView.image = [RGBFilter imageFromCurrentFramebuffer];
 }
 
+-(void)redSliderChangeValue:(CGFloat)value{
+    NSLog(@"the red value is %f", value);
+    
+    RGBFilter.red = value;
+    [brightnessFilter useNextFrameForImageCapture];
+    [RGBFilter useNextFrameForImageCapture];
+    [hazeFilter useNextFrameForImageCapture];
+    [sourcePicture processImage];
+    _photoImageView.image = [RGBFilter imageFromCurrentFramebuffer];
+}
 
+-(void)blueSliderChangeValue:(CGFloat)value{
+    NSLog(@"the blue value is %f", value);
+    
+    RGBFilter.blue = value;
+    [brightnessFilter useNextFrameForImageCapture];
+    [RGBFilter useNextFrameForImageCapture];
+    [hazeFilter useNextFrameForImageCapture];
+    [sourcePicture processImage];
+    _photoImageView.image = [RGBFilter imageFromCurrentFramebuffer];
+}
+
+-(void)greenSliderChangeValue:(CGFloat)value{
+    NSLog(@"the green value is %f", value);
+    
+    RGBFilter.green = value;
+    [brightnessFilter useNextFrameForImageCapture];
+    [RGBFilter useNextFrameForImageCapture];
+    [hazeFilter useNextFrameForImageCapture];
+    [sourcePicture processImage];
+    _photoImageView.image = [RGBFilter imageFromCurrentFramebuffer];
+}
+
+-(void)hazeFilterSloper:(CGFloat)value{
+    NSLog(@"the slopper haze is %f", value);
+    
+    hazeFilter.slope = value;
+    [brightnessFilter useNextFrameForImageCapture];
+    [RGBFilter useNextFrameForImageCapture];
+    [hazeFilter useNextFrameForImageCapture];
+    [sourcePicture processImage];
+    _photoImageView.image = [hazeFilter imageFromCurrentFramebuffer];
+}
+
+-(void)hazeFilterDistance:(CGFloat)value{
+    NSLog(@"the distance haze is %f", value);
+    
+    hazeFilter.distance = value;
+    [brightnessFilter useNextFrameForImageCapture];
+    [RGBFilter useNextFrameForImageCapture];
+    [hazeFilter useNextFrameForImageCapture];
+    [sourcePicture processImage];
+    _photoImageView.image = [hazeFilter imageFromCurrentFramebuffer];
+}
 
 #pragma mark - next view controller
 
 -(void)presentNextViewController{
     //TODO make the next view controller and add it
-//    [self presentViewController: animated:YES completion:NULL];
+    CaptionsViewController *captionViewController = [[CaptionsViewController alloc]init];
+    [self.navigationController pushViewController:captionViewController animated:YES];
+//    UIImageView *otherImageView = [[UIImageView alloc]initWithImage:sourcePicture];
+//    UIImage *compatibilityImage = [[UIImage alloc]initWithCIImage:sourcePicture];
+    captionViewController.theImage = _photoImageView.image;
 }
 
 

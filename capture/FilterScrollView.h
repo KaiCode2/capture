@@ -15,15 +15,28 @@
 
 -(void)brightnessSliderDidChangeValue:(CGFloat)value;
 
+-(void)redSliderChangeValue:(CGFloat)value;
+-(void)blueSliderChangeValue:(CGFloat)value;
+-(void)greenSliderChangeValue:(CGFloat)value;
+
+-(void)hazeFilterDistance:(CGFloat)value;
+-(void)hazeFilterSloper:(CGFloat)value;
+
 @end
 
 
 @interface FilterScrollView : UIScrollView 
 
 @property (strong, nonatomic)UIImage *image;
-@property float brightnessSliderValue;
 //make a property out of the delegate as an object
 @property (strong, nonatomic)NSObject <FilterScrollViewDelegate> *filterDelegate;
+
+@property float brightnessSliderValue;
+@property float redSliderValue;
+@property float blueSliderValue;
+@property float greenSliderValue;
+@property float slopperSliderValue;
+@property float distanceSliderValue;
 
 -(instancetype)initWithImage:(UIImage*)image;
 
