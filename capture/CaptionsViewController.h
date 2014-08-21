@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoModel.h"
+#import "homeViewController.h"
 
 @interface CaptionsViewController : UIViewController
 
 @property (strong, nonatomic)UIImage *theImage;
+@property (strong, nonatomic)PhotoModel *photoModel;
+
 
 @end

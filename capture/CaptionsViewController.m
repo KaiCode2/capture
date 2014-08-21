@@ -7,6 +7,7 @@
 //
 
 #import "CaptionsViewController.h"
+#import "CameraViewController.h"
 
 @interface CaptionsViewController ()
 
@@ -14,18 +15,30 @@
 
 @implementation CaptionsViewController{
     UIImageView *photoImageView;
+    UITextField *titleField;
+    UITextView *descriptionField;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, 63, 320, 320)];
+        photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 70, 100, 100)];
         [self.view addSubview:photoImageView];
         
-        UITextField *titleField = [[UITextField alloc]initWithFrame:CGRectMake(10, 400, 300, 35)];
+        titleField = [[UITextField alloc]initWithFrame:CGRectMake(125, 105, 175, 35)];
         titleField.placeholder = @"Title";
-        UITextView *descriptionField = [[UITextView alloc]initWithFrame:CGRectMake(10, 450, 300, 100)];
+        descriptionField = [[UITextView alloc]initWithFrame:CGRectMake(10, 200, 300, 300)];
+        descriptionField.font = [UIFont fontWithName:@"AppleSDGothicNeo-SemiBold" size:15];
+        
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(presentNextViewController)];
+        
+        
+        self.navigationItem.rightBarButtonItem = done;
+        
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture)];
+        
+        [self.view addGestureRecognizer:tapRecognizer];
         
         titleField.backgroundColor = [UIColor colorWithRed:2.5 green:5 blue:5 alpha:0.9];
         descriptionField.backgroundColor = [UIColor colorWithRed:2.5 green:5 blue:5 alpha:0.9];
@@ -48,6 +61,7 @@
         
         self.view.backgroundColor = [UIColor blackColor];
     }
+    
     return self;
 }
 
@@ -62,10 +76,22 @@
     photoImageView.image = self.theImage;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)tapGesture{
+    [titleField resignFirstResponder];
+    [descriptionField resignFirstResponder];
+}
+
+-(void)presentNextViewController{
+    self.photoModel = [[PhotoModel alloc]init];
+    [self.photoModel setTitle:titleField.text description:descriptionField.text image:photoImageView.image];
+
+    homeViewController *gallery = [[[[self.tabBarController viewControllers] objectAtIndex:1] viewControllers] firstObject];
+    
+    [gallery.photos addObject: self.photoModel];
+    
+    self.tabBarController.selectedIndex = 1;
+
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 /*

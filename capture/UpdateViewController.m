@@ -46,10 +46,9 @@
         UILabel *titleLabel = [UILabel new];
         titleLabel.attributedText = attrStr;
         [titleLabel sizeToFit];
-        self.navigationItem.titleView = titleLabel;
-        
-        self.tabBarController.tabBar.hidden = YES;
-    }
+        self.navigationItem.titleView = titleLabel;        
+        }
+    
     return self;
 }
 

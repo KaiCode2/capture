@@ -20,11 +20,12 @@
     homeViewController *viewController = [[homeViewController alloc]init];
     CameraViewController *myViewController = [[CameraViewController alloc]init];
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:myViewController];
+    UINavigationController *otherNavCon = [[UINavigationController alloc]initWithRootViewController:viewController];
     navController.navigationBar.backgroundColor = [UIColor blueColor];
 
     
     self.tabBarController.view.backgroundColor = [UIColor clearColor];
-    self.tabBarController.viewControllers = @[navController, viewController];
+    self.tabBarController.viewControllers = @[navController, otherNavCon];
 
     self.window.rootViewController = _tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];

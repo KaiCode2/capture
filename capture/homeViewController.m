@@ -18,6 +18,15 @@
 
 - (id)init
 {
+    NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc]initWithString: @"Capture"];
+    [attrStr addAttribute: NSForegroundColorAttributeName value: [UIColor colorWithRed:0 green:0 blue:8 alpha:0.6] range: NSMakeRange(0, 7)];
+    [attrStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"SnellRoundhand-Black" size:38.0] range:NSMakeRange(0, 7)];
+    
+    UILabel *titleLabel = [UILabel new];
+    titleLabel.attributedText = attrStr;
+    [titleLabel sizeToFit];
+    self.navigationItem.titleView = titleLabel;
+    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
@@ -47,14 +56,15 @@
 }
 
 
-
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-//    return self.photos.count;
-    return 100;
+    return [self.photos count];
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"Photo" forIndexPath: indexPath];
+//    cell.imageView.image = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:0];
+//    cell.titleLabel.text = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:1];
+//    cell.descriptionView.text = [[self.photos objectAtIndex:indexPath.row]objectAtIndex:2];
     cell.backgroundColor = [UIColor redColor];
     
     return cell;
