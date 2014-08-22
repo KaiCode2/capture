@@ -8,7 +8,6 @@
 
 #import "CaptionsViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import <MobileCoreServices/MobileCoreServices.h>
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "CameraViewController.h"
 
