@@ -7,6 +7,9 @@
 //
 
 #import "CaptionsViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "CameraViewController.h"
 
 @interface CaptionsViewController ()
@@ -17,12 +20,15 @@
     UIImageView *photoImageView;
     UITextField *titleField;
     UITextView *descriptionField;
+    ALAssetsLibrary *library;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        library = [[ALAssetsLibrary alloc] init];
+        
         photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 70, 100, 100)];
         [self.view addSubview:photoImageView];
         
@@ -88,13 +94,19 @@
         
         [toLongAlert show];
         return;
-    }else if (titleField.text == 0){
+    }else if (titleField.text.length == 0){
         UIAlertView *toShortAlert = [[UIAlertView alloc]initWithTitle:@"oops." message:@"it appears you don't have a title!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [toShortAlert show];
         return;
     }else{
         self.photoModel = [[PhotoModel alloc]initWithTitle:titleField.text description:descriptionField.text image:photoImageView.image];
+        
+        [library saveImage:photoImageView.image toAlbum:@"Capture" withCompletionBlock:^(NSError *error) {
+            if (error) {
+                NSLog(@"the error was %@", error);
+            }
+        }];
         
         //    self.photoModel.Image = photoImageView.image;
         //    self.photoModel.Title = titleField.text;

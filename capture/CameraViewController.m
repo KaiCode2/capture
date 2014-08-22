@@ -7,8 +7,6 @@
 //
 
 #import "CameraViewController.h"
-#import <AssetsLibrary/AssetsLibrary.h>
-#import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "UpdateViewController.h"
 
 @interface CameraViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate>
@@ -43,7 +41,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     self.picker  = [[UIImagePickerController alloc] init];
     self.picker.delegate = self;
     self.picker.allowsEditing = YES;

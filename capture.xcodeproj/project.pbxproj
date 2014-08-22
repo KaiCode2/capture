@@ -21,6 +21,7 @@
 		12392FA719A55C2E00167FD4 /* FilterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392FA619A55C2E00167FD4 /* FilterScrollView.m */; };
 		12392FAD19A6647F00167FD4 /* CaptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392FAC19A6647F00167FD4 /* CaptionsViewController.m */; };
 		12392FAF19A6754C00167FD4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12392FAE19A6754C00167FD4 /* QuartzCore.framework */; };
+		12392FB119A7DE0400167FD4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12392FB019A7DE0400167FD4 /* MobileCoreServices.framework */; };
 		12E6277219A2830C00C8EECC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277119A2830C00C8EECC /* Foundation.framework */; };
 		12E6277419A2830C00C8EECC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277319A2830C00C8EECC /* CoreGraphics.framework */; };
 		12E6277619A2830C00C8EECC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277519A2830C00C8EECC /* UIKit.framework */; };
@@ -69,6 +70,7 @@
 		12392FAB19A6647F00167FD4 /* CaptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptionsViewController.h; sourceTree = "<group>"; };
 		12392FAC19A6647F00167FD4 /* CaptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptionsViewController.m; sourceTree = "<group>"; };
 		12392FAE19A6754C00167FD4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		12392FB019A7DE0400167FD4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		12E6276E19A2830C00C8EECC /* capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E6277119A2830C00C8EECC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12E6277319A2830C00C8EECC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -96,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12392FB119A7DE0400167FD4 /* MobileCoreServices.framework in Frameworks */,
 				12392FAF19A6754C00167FD4 /* QuartzCore.framework in Frameworks */,
 				12392F8419A423E200167FD4 /* AssetsLibrary.framework in Frameworks */,
 				12E6277419A2830C00C8EECC /* CoreGraphics.framework in Frameworks */,
@@ -192,6 +195,7 @@
 		12E6277019A2830C00C8EECC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				12392FB019A7DE0400167FD4 /* MobileCoreServices.framework */,
 				12392FAE19A6754C00167FD4 /* QuartzCore.framework */,
 				12392F8319A423E200167FD4 /* AssetsLibrary.framework */,
 				12E6277119A2830C00C8EECC /* Foundation.framework */,
