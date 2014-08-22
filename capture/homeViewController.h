@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface homeViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
+@interface homeViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *photos;
 

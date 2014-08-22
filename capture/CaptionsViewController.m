@@ -83,21 +83,32 @@
 }
 
 -(void)presentNextViewController{
-    self.photoModel = [[PhotoModel alloc]initWithTitle:titleField.text description:descriptionField.text image:photoImageView.image];
-    
-//    self.photoModel.Image = photoImageView.image;
-//    self.photoModel.Title = titleField.text;
-//    self.photoModel.Description = descriptionField.text;
-//    [self.photoModel setTitle:titleField.text description:descriptionField.text image:photoImageView.image];
-
-    
-    homeViewController *gallery = [[[[self.tabBarController viewControllers] objectAtIndex:1] viewControllers] firstObject];
-    
-    [gallery.photos addObject: self.photoModel];
-    
-    self.tabBarController.selectedIndex = 1;
-
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    if (titleField.text.length > 20) {
+        UIAlertView *toLongAlert = [[UIAlertView alloc]initWithTitle:@"oops." message:@"it appears your title is too long!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [toLongAlert show];
+        return;
+    }else if (titleField.text == 0){
+        UIAlertView *toShortAlert = [[UIAlertView alloc]initWithTitle:@"oops." message:@"it appears you don't have a title!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [toShortAlert show];
+        return;
+    }else{
+        self.photoModel = [[PhotoModel alloc]initWithTitle:titleField.text description:descriptionField.text image:photoImageView.image];
+        
+        //    self.photoModel.Image = photoImageView.image;
+        //    self.photoModel.Title = titleField.text;
+        //    self.photoModel.Description = descriptionField.text;
+        //    [self.photoModel setTitle:titleField.text description:descriptionField.text image:photoImageView.image];
+        
+        homeViewController *gallery = [[[[self.tabBarController viewControllers] objectAtIndex:1] viewControllers] firstObject];
+        
+        [gallery.photos addObject: self.photoModel];
+        
+        self.tabBarController.selectedIndex = 1;
+        
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
 }
 
 /*
