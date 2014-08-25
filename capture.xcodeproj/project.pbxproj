@@ -22,6 +22,9 @@
 		12392FAD19A6647F00167FD4 /* CaptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392FAC19A6647F00167FD4 /* CaptionsViewController.m */; };
 		12392FAF19A6754C00167FD4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12392FAE19A6754C00167FD4 /* QuartzCore.framework */; };
 		12392FB119A7DE0400167FD4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12392FB019A7DE0400167FD4 /* MobileCoreServices.framework */; };
+		12392FB419A7F23300167FD4 /* imagesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12392FB219A7F23300167FD4 /* imagesModel.xcdatamodeld */; };
+		12392FB719A7F30300167FD4 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 12392FB619A7F30300167FD4 /* Photo.m */; };
+		12392FB919A7F31F00167FD4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12392FB819A7F31F00167FD4 /* CoreData.framework */; };
 		12E6277219A2830C00C8EECC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277119A2830C00C8EECC /* Foundation.framework */; };
 		12E6277419A2830C00C8EECC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277319A2830C00C8EECC /* CoreGraphics.framework */; };
 		12E6277619A2830C00C8EECC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277519A2830C00C8EECC /* UIKit.framework */; };
@@ -71,6 +74,10 @@
 		12392FAC19A6647F00167FD4 /* CaptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptionsViewController.m; sourceTree = "<group>"; };
 		12392FAE19A6754C00167FD4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		12392FB019A7DE0400167FD4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		12392FB319A7F23300167FD4 /* imagesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = imagesModel.xcdatamodel; sourceTree = "<group>"; };
+		12392FB519A7F30300167FD4 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		12392FB619A7F30300167FD4 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		12392FB819A7F31F00167FD4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		12E6276E19A2830C00C8EECC /* capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E6277119A2830C00C8EECC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12E6277319A2830C00C8EECC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -98,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12392FB919A7F31F00167FD4 /* CoreData.framework in Frameworks */,
 				12392FB119A7DE0400167FD4 /* MobileCoreServices.framework in Frameworks */,
 				12392FAF19A6754C00167FD4 /* QuartzCore.framework in Frameworks */,
 				12392F8419A423E200167FD4 /* AssetsLibrary.framework in Frameworks */,
@@ -195,6 +203,7 @@
 		12E6277019A2830C00C8EECC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				12392FB819A7F31F00167FD4 /* CoreData.framework */,
 				12392FB019A7DE0400167FD4 /* MobileCoreServices.framework */,
 				12392FAE19A6754C00167FD4 /* QuartzCore.framework */,
 				12392F8319A423E200167FD4 /* AssetsLibrary.framework */,
@@ -212,6 +221,9 @@
 			children = (
 				12E6278019A2830C00C8EECC /* AppDelegate.h */,
 				12E6278119A2830C00C8EECC /* AppDelegate.m */,
+				12392FB219A7F23300167FD4 /* imagesModel.xcdatamodeld */,
+				12392FB519A7F30300167FD4 /* Photo.h */,
+				12392FB619A7F30300167FD4 /* Photo.m */,
 				12E6278319A2830C00C8EECC /* Images.xcassets */,
 				12392FA919A55C6100167FD4 /* views */,
 				12392FA819A55C3700167FD4 /* models */,
@@ -389,6 +401,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12392FB719A7F30300167FD4 /* Photo.m in Sources */,
+				12392FB419A7F23300167FD4 /* imagesModel.xcdatamodeld in Sources */,
 				12392FA719A55C2E00167FD4 /* FilterScrollView.m in Sources */,
 				12392F8919A42E5700167FD4 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				12E6278219A2830C00C8EECC /* AppDelegate.m in Sources */,
@@ -617,6 +631,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		12392FB219A7F23300167FD4 /* imagesModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				12392FB319A7F23300167FD4 /* imagesModel.xcdatamodel */,
+			);
+			currentVersion = 12392FB319A7F23300167FD4 /* imagesModel.xcdatamodel */;
+			path = imagesModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 12E6276619A2830B00C8EECC /* Project object */;
 }

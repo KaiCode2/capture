@@ -12,6 +12,13 @@
 
 @implementation AppDelegate
 
+-(void)saveContext{
+    if (self.moc.hasChanges == YES) {
+        NSError *error = nil;
+        [self.moc save:&error];
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -22,7 +29,24 @@
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:myViewController];
     UINavigationController *otherNavCon = [[UINavigationController alloc]initWithRootViewController:viewController];
     navController.navigationBar.backgroundColor = [UIColor blueColor];
-
+    
+    NSString *pathString = [[NSBundle mainBundle] pathForResource:@"imagesModel" ofType:@"momd"];
+    NSURL *path = [NSURL fileURLWithPath: pathString];
+    NSManagedObjectModel *mom = [[NSManagedObjectModel alloc]initWithContentsOfURL:path];
+    
+    _psc = [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel:mom];
+    
+    NSString *psString = @"imagesModel.sqlite";
+    NSURL *psPath = [[self psHelper] URLByAppendingPathComponent: psString];
+    NSError *error = nil;
+    [_psc addPersistentStoreWithType: NSSQLiteStoreType
+                      configuration: nil
+                                URL: psPath
+                            options: nil
+                              error: &error];
+    _moc = [[NSManagedObjectContext alloc]init];
+    _moc.persistentStoreCoordinator = _psc;
+    
     
     self.tabBarController.view.backgroundColor = [UIColor clearColor];
     self.tabBarController.viewControllers = @[navController, otherNavCon];
@@ -43,6 +67,8 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    NSLog(@"app will enter background");
+    [self saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -58,6 +84,11 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self saveContext];
+}
+
+-(NSURL*)psHelper {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

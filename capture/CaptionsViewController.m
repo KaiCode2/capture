@@ -10,6 +10,8 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "CameraViewController.h"
+#import "Photo.h"
+#import "AppDelegate.h"
 
 @interface CaptionsViewController ()
 
@@ -20,6 +22,8 @@
     UITextField *titleField;
     UITextView *descriptionField;
     ALAssetsLibrary *library;
+    Photo *photo;
+    AppDelegate *delegate;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,6 +31,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         library = [[ALAssetsLibrary alloc] init];
+        delegate = [[UIApplication sharedApplication]delegate];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:delegate.moc];
+        photo = [[Photo alloc]initWithEntity:entity insertIntoManagedObjectContext:delegate.moc];
         
         photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 70, 100, 100)];
         [self.view addSubview:photoImageView];
@@ -99,7 +106,14 @@
         [toShortAlert show];
         return;
     }else{
-        self.photoModel = [[PhotoModel alloc]initWithTitle:titleField.text description:descriptionField.text image:photoImageView.image];
+//        self.photoModel = [[PhotoModel alloc]initWithTitle:titleField.text description:descriptionField.text image:photoImageView.image];
+        
+        photo.photoTitle = titleField.text;
+        photo.photoDescription = descriptionField.text;
+        UIImage *dataImage = [[UIImage alloc]init];
+        dataImage = photoImageView.image;
+        NSData *imageData = UIImageJPEGRepresentation(dataImage, 1.0);
+        photo.photoImage = imageData;
         
         [library saveImage:photoImageView.image toAlbum:@"Capture" withCompletionBlock:^(NSError *error) {
             if (error) {
@@ -114,7 +128,8 @@
         
         homeViewController *gallery = [[[[self.tabBarController viewControllers] objectAtIndex:1] viewControllers] firstObject];
         
-        [gallery.photos addObject: self.photoModel];
+//        [gallery.photos addObject: self.photoModel];
+        [gallery.photos addObject: photo];
         
         self.tabBarController.selectedIndex = 1;
         

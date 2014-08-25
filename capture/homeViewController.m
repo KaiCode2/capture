@@ -8,7 +8,7 @@
 
 #import "homeViewController.h"
 #import "PhotoCell.h"
-#import "PhotoModel.h"
+#import "Photo.h"
 
 @interface homeViewController ()
 
@@ -17,6 +17,7 @@
 @implementation homeViewController{
     UICollectionViewFlowLayout *layout;
     BOOL isSelected;
+    AppDelegate *delegate;
 }
 
 - (id)init
@@ -34,6 +35,17 @@
     
     layout = [[UICollectionViewFlowLayout alloc] init];
     if (self) {
+        delegate = [[UIApplication sharedApplication]delegate];
+        
+        NSFetchRequest *requestData = [[NSFetchRequest alloc]initWithEntityName:@"Photo"];
+        NSError *error = nil;
+        
+//        NSMutableArray *resultOfFetch = [[NSMutableArray alloc]init];
+//        [resultOfFetch addObject: [delegate.moc executeFetchRequest:requestData error:&error]];
+        id result = [delegate.moc executeFetchRequest:requestData error:&error];
+        NSLog(@"the result of the fetch is %@", result);
+//        [self.photos addObject: resultOfFetch];
+        
         isSelected = NO;
         UIImage *image = [UIImage imageNamed:@"galleryIcon.png"];
         UITabBarItem *tabBar = [[UITabBarItem alloc]initWithTitle:@"" image: image selectedImage:nil];
@@ -73,12 +85,12 @@
     
     NSLog(@"the array count is %lu", (unsigned long)[self.photos count]);
     
-    PhotoModel* p = (PhotoModel*)[self.photos objectAtIndex:indexPath.row];
+    Photo* p = (Photo*)[self.photos objectAtIndex:indexPath.row];
     
-    
-    cell.imageView.image = p.Image;
-    cell.titleLabel.text = p.Title;
-    cell.descriptionView.text = p.Description;
+    UIImage *viewImage = [UIImage imageWithData:p.photoImage];
+    cell.imageView.image = viewImage;
+    cell.titleLabel.text = p.photoTitle;
+    cell.descriptionView.text = p.photoDescription;
     cell.descriptionView.editable = NO;
     
     cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"colors.png"]];
