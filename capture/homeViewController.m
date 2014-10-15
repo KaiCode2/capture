@@ -9,6 +9,8 @@
 #import "homeViewController.h"
 #import "PhotoCell.h"
 #import "PhotoModel.h"
+#import "UpdateViewController.h"
+#import "UIImage+crop_image.h"
 
 @interface homeViewController ()
 
@@ -36,8 +38,12 @@
     if (self) {
         isSelected = NO;
         UIImage *image = [UIImage imageNamed:@"galleryIcon.png"];
-        UITabBarItem *tabBar = [[UITabBarItem alloc]initWithTitle:@"" image: image selectedImage:nil];
+        UITabBarItem *tabBar = [[UITabBarItem alloc]initWithTitle:@"" image:image selectedImage:nil];
         self.tabBarItem = tabBar;
+        
+        UIImage *cameraImage = [UIImage imageWithImage:[UIImage imageNamed:@"cameraIcon.png"] scaledToSize:CGSizeMake(40, 40)];
+        UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:cameraImage style:UIBarButtonItemStylePlain target:self action:@selector(showCamera)];
+        [self.navigationItem setLeftBarButtonItem:button];
         
         CGFloat itemSpacing = 10.0;
         layout.minimumInteritemSpacing = itemSpacing;
@@ -50,6 +56,12 @@
     return (self = [super initWithCollectionViewLayout:layout]);
 }
 
+-(void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+    
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,6 +69,8 @@
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"colors.png"]];
     self.collectionView.backgroundView = imageView;
     [self.collectionView registerClass: [PhotoCell class] forCellWithReuseIdentifier: @"Photo"];
+    
+    self.selectedImage = [[UIImage alloc]init];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -79,6 +93,8 @@
     cell.imageView.image = p.Image;
     cell.titleLabel.text = p.Title;
     cell.descriptionView.text = p.Description;
+    [cell.shareButton addTarget:self action:@selector(shareTitle:) forControlEvents:UIControlEventTouchUpInside];
+    cell.shareButton.tag = indexPath.row;
     cell.descriptionView.editable = NO;
     
     cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"colors.png"]];
@@ -86,6 +102,62 @@
     NSLog(@"number of cell");
     
     return cell;
+}
+
+-(void)showCamera{
+    if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        PKImagePickerViewController *imagePicker = [[PKImagePickerViewController alloc]init];
+        imagePicker.delegate = self;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }else{
+        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+        [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+}
+
+-(void)imageSelectionCancelled{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imageSelected:(UIImage *)img{
+    self.selectedImage = img;
+    
+    UpdateViewController *updateViewController = [[UpdateViewController alloc]init];
+    updateViewController.theImage = self.selectedImage;
+    updateViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:updateViewController animated: YES];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+    if(!img) img = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    self.selectedImage = img;
+}
+
+-(void)shareTitle:(id)sender{
+    UIButton *senderButton = (UIButton*)sender;
+    
+    NSMutableArray *sharingItems = [NSMutableArray new];
+    
+    PhotoModel *senderModel = (PhotoModel*)[self.photos objectAtIndex:senderButton.tag];
+    
+    if (senderModel.Title && senderModel.Description) {
+        NSString* postString = [[NSString alloc]init];
+        [postString stringByAppendingString:senderModel.Title];
+        [postString stringByAppendingString:@" "];
+        [postString stringByAppendingString:senderModel.Description];
+        
+        
+        [sharingItems addObject:postString];
+    }
+    if (senderModel.Image) {
+        [sharingItems addObject:senderModel.Image];
+    }
+    
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

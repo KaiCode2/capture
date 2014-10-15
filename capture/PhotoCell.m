@@ -18,10 +18,14 @@
         self.titleLabel = [[UILabel alloc]initWithFrame: CGRectMake(5, 300, 300, 75)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.font = [UIFont fontWithName:@"Arial-BoldItalicMT" size:25];
-        self.descriptionView = [[UITextView alloc] initWithFrame: CGRectMake(5, 375, 275, 300)];
+        self.descriptionView = [[UITextView alloc] initWithFrame: CGRectMake(5, 375, 275, 200)];
         self.descriptionView.font = [UIFont fontWithName:@"AppleSDGothicNeo-SemiBold" size:15];
         self.descriptionView.backgroundColor = [UIColor clearColor];
+        self.shareButton = [[UIButton alloc]initWithFrame:CGRectMake(self.contentView.center.x - 25, 600, 200, 100)];
+        self.shareButton.backgroundColor = [UIColor blueColor];
+        [self.shareButton setTitle:@"Share" forState:UIControlStateNormal];
         
+        [self.contentView addSubview: self.shareButton];
         [self.contentView addSubview: self.descriptionView];
         [self.contentView addSubview: self.titleLabel];
         [self.contentView addSubview: self.imageView];

@@ -13,5 +13,6 @@
 @property (strong, nonatomic)UILabel *titleLabel;
 @property (strong, nonatomic)UITextView *descriptionView;
 @property (strong, nonatomic)UIImageView *imageView;
+@property (strong, nonatomic)UIButton *shareButton;
 
 @end

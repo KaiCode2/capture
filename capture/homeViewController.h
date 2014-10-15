@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <PKImagePicker/PKImagePickerViewController.h>
 
 @interface homeViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *photos;
+
+@property (strong, nonatomic)UIImage *selectedImage;
 
 @end

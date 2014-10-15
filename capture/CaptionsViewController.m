@@ -98,7 +98,12 @@
         
         [toShortAlert show];
         return;
-    }else{
+    }else if (descriptionField.text.length > 119){
+        UIAlertView *dToLongAlert = [[UIAlertView alloc]initWithTitle:@"oops" message:@"you went over your 375 charecter limit" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [dToLongAlert show];
+    }
+    else{
         self.photoModel = [[PhotoModel alloc]initWithTitle:titleField.text description:descriptionField.text image:photoImageView.image];
         
         [library saveImage:photoImageView.image toAlbum:@"Capture" withCompletionBlock:^(NSError *error) {

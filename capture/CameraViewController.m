@@ -62,7 +62,7 @@
                                              destructiveButtonTitle:nil
                                                   otherButtonTitles: @"Take a photo", @"Choose existing", nil];
     
-    [photoSheet showInView: self.view];
+    [self showActionSheet];
 }
 
 -(void)showActionSheet{
@@ -81,7 +81,6 @@
 }
 
 
-
 #pragma mark - photo pickers
 
 -(void) showCamera {
@@ -93,12 +92,12 @@
         return;
     }
     
-    [self presentViewController:self.picker animated:YES completion:NULL];
+    [self presentViewController:self.picker animated:YES completion:nil];
 }
 
 -(void) showGallery {
     [self.picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    [self presentViewController:self.picker animated:YES completion:NULL];
+    [self presentViewController:self.picker animated:YES completion:nil];
 }
 
 

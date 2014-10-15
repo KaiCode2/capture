@@ -80,6 +80,9 @@
 }
 
 - (void)setTheImage:(UIImage *)theImage{
+    //TODO: the orientation is side ways so try using the .imageOrientation property to fix it.
+    //the line below is close but not it
+    _theImage = [UIImage imageWithCGImage:[_theImage CGImage] scale:1.0 orientation:UIImageOrientationUp];
     _theImage = theImage;
     sourcePicture = [[GPUImagePicture alloc] initWithImage:theImage];
     brightnessFilter = [[GPUImageBrightnessFilter alloc]init];
@@ -191,24 +194,9 @@
 #pragma mark - next view controller
 
 -(void)presentNextViewController{
-    //TODO make the next view controller and add it
     CaptionsViewController *captionViewController = [[CaptionsViewController alloc]init];
     [self.navigationController pushViewController:captionViewController animated:YES];
-//    UIImageView *otherImageView = [[UIImageView alloc]initWithImage:sourcePicture];
-//    UIImage *compatibilityImage = [[UIImage alloc]initWithCIImage:sourcePicture];
     captionViewController.theImage = _photoImageView.image;
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -24,10 +24,10 @@
     navController.navigationBar.backgroundColor = [UIColor blueColor];
 
     
-    self.tabBarController.view.backgroundColor = [UIColor clearColor];
-    self.tabBarController.viewControllers = @[navController, otherNavCon];
+//    self.tabBarController.view.backgroundColor = [UIColor clearColor];
+//    self.tabBarController.viewControllers = @[navController, otherNavCon];
 
-    self.window.rootViewController = _tabBarController;
+    self.window.rootViewController = otherNavCon;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
