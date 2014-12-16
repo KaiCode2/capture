@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 #import "UpdateViewController.h"
+#import "NewViewController.h"
 
 @interface CameraViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate>
 
@@ -109,6 +110,7 @@
     
     NSLog(@"img is %@", img.description);
     NSLog(@"selectedImage is %@", self.selectedImage.description);
+    
     UpdateViewController *updateViewController = [[UpdateViewController alloc]init];
     updateViewController.theImage = self.selectedImage;
     updateViewController.hidesBottomBarWhenPushed = YES;

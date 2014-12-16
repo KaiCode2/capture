@@ -21,16 +21,13 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - GPUImage (0.1.5)
-  - PKImagePicker (0.0.3)
 
 DEPENDENCIES:
   - AFNetworking
   - GPUImage
-  - PKImagePicker (~> 0.0.2)
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
-  PKImagePicker: 1e9db68d7f7dd3dd9730c63281902be1b3f2ff40
 
 COCOAPODS: 0.33.1

@@ -4,22 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>PKImageBundle.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-GPUImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-PKImagePicker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,27 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0866CBE7BAAD43888CC14C25</key>
+		<key>2BB286A991274A7D9421FDFA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1CA36A81A9314F9ABDB39CD5</key>
+		<key>A153DD2B2CE24F4DAB000748</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51F41B00AB324A9296F8B3C5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>98EB016FDD2548A28E6E7E84</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B25F649A05364A11BD26583B</key>
+		<key>E836DBCB6CEB416390763248</key>
 		<dict>
 			<key>primary</key>
 			<true/>

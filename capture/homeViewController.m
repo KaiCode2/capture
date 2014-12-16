@@ -11,14 +11,15 @@
 #import "PhotoModel.h"
 #import "UpdateViewController.h"
 #import "UIImage+crop_image.h"
+#import "NewViewController.h"
 
 @interface homeViewController ()
-
 @end
 
 @implementation homeViewController{
     UICollectionViewFlowLayout *layout;
     BOOL isSelected;
+    UIActionSheet *photoSheet;
 }
 
 - (id)init
@@ -42,7 +43,7 @@
         self.tabBarItem = tabBar;
         
         UIImage *cameraImage = [UIImage imageWithImage:[UIImage imageNamed:@"cameraIcon.png"] scaledToSize:CGSizeMake(40, 40)];
-        UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:cameraImage style:UIBarButtonItemStylePlain target:self action:@selector(showCamera)];
+        UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:cameraImage style:UIBarButtonItemStylePlain target:self action:@selector(presentCameraSheet)];
         [self.navigationItem setLeftBarButtonItem:button];
         
         CGFloat itemSpacing = 10.0;
@@ -56,27 +57,126 @@
     return (self = [super initWithCollectionViewLayout:layout]);
 }
 
--(void)didReceiveMemoryWarning{
-    [super didReceiveMemoryWarning];
-    
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"colors.png"]];
     self.collectionView.backgroundView = imageView;
+    
     [self.collectionView registerClass: [PhotoCell class] forCellWithReuseIdentifier: @"Photo"];
     
     self.selectedImage = [[UIImage alloc]init];
+    
+    self.picker  = [[UIImagePickerController alloc] init];
+    self.picker.delegate = self;
+    self.picker.allowsEditing = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.collectionView reloadData];
 }
+
+#pragma mark - camera methods
+
+-(void)presentCameraSheet{
+    photoSheet = [[UIActionSheet alloc]initWithTitle:@"Choose a photo source."
+                                            delegate:self
+                                   cancelButtonTitle:@"Cancel"
+                              destructiveButtonTitle:nil
+                                   otherButtonTitles: @"Take a photo", @"Choose existing", nil];
+    
+    [photoSheet showInView: self.view];
+}
+
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:@"Take a photo"]) {
+        NSLog(@"take photo");
+        [self showCamera];
+    }else if ([buttonTitle isEqualToString:@"Choose existing"]){
+        NSLog(@"choose photo");
+        [self showGallery];
+    }
+}
+
+-(void) showCamera {
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+        self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }else{
+        UIAlertView *noCameraAlert = [[UIAlertView alloc] initWithTitle:@"Oh no!" message: @"It appears you have no camera availible or you didn't let us you yours." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [noCameraAlert show];
+        return;
+    }
+    
+    [self presentViewController:self.picker animated:YES completion:nil];
+}
+
+-(void) showGallery {
+    [self.picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self presentViewController:self.picker animated:YES completion:nil];
+}
+
+-(void)imageSelectionCancelled{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imageSelected:(UIImage *)img{
+//    UIImage *orientedImage = [UIImage imageWithCIImage:[img CIImage] scale:1.0 orientation:UIImageOrientationUp];
+    
+    self.selectedImage = img;
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    //NewViewController *updateViewController = [[NewViewController alloc] init];
+    
+    UpdateViewController *updateViewController = [[UpdateViewController alloc]init];
+    updateViewController.theImage = self.selectedImage;
+    updateViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:updateViewController animated: YES];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+    if(!img) img = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    self.selectedImage = img;
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    //present edit view controller
+    UpdateViewController *updateViewController = [[UpdateViewController alloc]init];
+    updateViewController.theImage = self.selectedImage;
+    updateViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:updateViewController animated: YES];
+}
+
+#pragma mark - share title
+
+-(void)shareTitle:(id)sender{
+    UIButton *senderButton = (UIButton*)sender;
+    
+    NSMutableArray *sharingItems = [NSMutableArray new];
+    
+    PhotoModel *senderModel = (PhotoModel*)[self.photos objectAtIndex:senderButton.tag];
+    
+    if (senderModel.Title && senderModel.Description) {
+        NSString* postString = [[NSString alloc]init];
+        [postString stringByAppendingString:senderModel.Title];
+        [postString stringByAppendingString:@" "];
+        [postString stringByAppendingString:senderModel.Description];
+        
+        
+        [sharingItems addObject:postString];
+    }
+    if (senderModel.Image) {
+        [sharingItems addObject:senderModel.Image];
+    }
+    
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
+}
+
+#pragma mark - collectionView set up
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return [self.photos count];
@@ -102,62 +202,6 @@
     NSLog(@"number of cell");
     
     return cell;
-}
-
--(void)showCamera{
-    if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        PKImagePickerViewController *imagePicker = [[PKImagePickerViewController alloc]init];
-        imagePicker.delegate = self;
-        [self presentViewController:imagePicker animated:YES completion:nil];
-    }else{
-        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
-        [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        [self presentViewController:picker animated:YES completion:nil];
-    }
-}
-
--(void)imageSelectionCancelled{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)imageSelected:(UIImage *)img{
-    self.selectedImage = img;
-    
-    UpdateViewController *updateViewController = [[UpdateViewController alloc]init];
-    updateViewController.theImage = self.selectedImage;
-    updateViewController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:updateViewController animated: YES];
-}
-
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
-    if(!img) img = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-    self.selectedImage = img;
-}
-
--(void)shareTitle:(id)sender{
-    UIButton *senderButton = (UIButton*)sender;
-    
-    NSMutableArray *sharingItems = [NSMutableArray new];
-    
-    PhotoModel *senderModel = (PhotoModel*)[self.photos objectAtIndex:senderButton.tag];
-    
-    if (senderModel.Title && senderModel.Description) {
-        NSString* postString = [[NSString alloc]init];
-        [postString stringByAppendingString:senderModel.Title];
-        [postString stringByAppendingString:@" "];
-        [postString stringByAppendingString:senderModel.Description];
-        
-        
-        [sharingItems addObject:postString];
-    }
-    if (senderModel.Image) {
-        [sharingItems addObject:senderModel.Image];
-    }
-    
-    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
-    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -186,16 +230,5 @@
     }
     return CGSizeMake(150.0, 150.0);
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

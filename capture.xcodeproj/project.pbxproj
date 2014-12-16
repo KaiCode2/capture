@@ -24,6 +24,8 @@
 		12392FB119A7DE0400167FD4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12392FB019A7DE0400167FD4 /* MobileCoreServices.framework */; };
 		12392FFB19ABCBAA00167FD4 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 12392FFA19ABCBAA00167FD4 /* Podfile */; };
 		124468B619E9AE6A0005B97C /* UIImage+crop_image.m in Sources */ = {isa = PBXBuildFile; fileRef = 124468B519E9AE6A0005B97C /* UIImage+crop_image.m */; };
+		124D76F019EF4594001520AF /* NewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124D76EF19EF4594001520AF /* NewViewController.m */; };
+		124D76F319EF4B87001520AF /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 124D76F219EF4B87001520AF /* UIImage+Resize.m */; };
 		12E6277219A2830C00C8EECC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277119A2830C00C8EECC /* Foundation.framework */; };
 		12E6277419A2830C00C8EECC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277319A2830C00C8EECC /* CoreGraphics.framework */; };
 		12E6277619A2830C00C8EECC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E6277519A2830C00C8EECC /* UIKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -77,6 +79,10 @@
 		12392FFA19ABCBAA00167FD4 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		124468B419E9AE6A0005B97C /* UIImage+crop_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+crop_image.h"; sourceTree = "<group>"; };
 		124468B519E9AE6A0005B97C /* UIImage+crop_image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+crop_image.m"; sourceTree = "<group>"; };
+		124D76EE19EF4594001520AF /* NewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewViewController.h; sourceTree = "<group>"; };
+		124D76EF19EF4594001520AF /* NewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewViewController.m; sourceTree = "<group>"; };
+		124D76F119EF4B86001520AF /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		124D76F219EF4B87001520AF /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		12E6276E19A2830C00C8EECC /* capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E6277119A2830C00C8EECC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12E6277319A2830C00C8EECC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -171,6 +177,10 @@
 				12392F6D19A3E99600167FD4 /* CameraViewController.m */,
 				12392F8F19A5195D00167FD4 /* UpdateViewController.h */,
 				12392F9019A5195D00167FD4 /* UpdateViewController.m */,
+				124D76EE19EF4594001520AF /* NewViewController.h */,
+				124D76EF19EF4594001520AF /* NewViewController.m */,
+				124D76F119EF4B86001520AF /* UIImage+Resize.h */,
+				124D76F219EF4B87001520AF /* UIImage+Resize.m */,
 				12392FAB19A6647F00167FD4 /* CaptionsViewController.h */,
 				12392FAC19A6647F00167FD4 /* CaptionsViewController.m */,
 			);
@@ -401,12 +411,14 @@
 				12392FA719A55C2E00167FD4 /* FilterScrollView.m in Sources */,
 				12392F8919A42E5700167FD4 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				12E6278219A2830C00C8EECC /* AppDelegate.m in Sources */,
+				124D76F019EF4594001520AF /* NewViewController.m in Sources */,
 				12392F6519A3CBC600167FD4 /* PhotoCell.m in Sources */,
 				12392F9119A5195D00167FD4 /* UpdateViewController.m in Sources */,
 				12392FAD19A6647F00167FD4 /* CaptionsViewController.m in Sources */,
 				12E6277E19A2830C00C8EECC /* main.m in Sources */,
 				12392F6E19A3E99600167FD4 /* CameraViewController.m in Sources */,
 				124468B619E9AE6A0005B97C /* UIImage+crop_image.m in Sources */,
+				124D76F319EF4B87001520AF /* UIImage+Resize.m in Sources */,
 				12392F6219A3C8F400167FD4 /* PhotoModel.m in Sources */,
 				12E627A219A2832C00C8EECC /* homeViewController.m in Sources */,
 			);

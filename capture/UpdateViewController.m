@@ -9,6 +9,7 @@
 #import "UpdateViewController.h"
 #import "CameraViewController.h"
 #import "CaptionsViewController.h"
+#import "UIImage+Resize.h"
 #import <GPUImage.h>
 
 @interface UpdateViewController ()
@@ -82,8 +83,9 @@
 - (void)setTheImage:(UIImage *)theImage{
     //TODO: the orientation is side ways so try using the .imageOrientation property to fix it.
     //the line below is close but not it
-    _theImage = [UIImage imageWithCGImage:[_theImage CGImage] scale:1.0 orientation:UIImageOrientationUp];
+//    theImage = [UIImage imageWithCGImage:[theImage CGImage] scale:1.0 orientation:UIImageOrientationUp];
     _theImage = theImage;
+    [theImage fixOrientation];
     sourcePicture = [[GPUImagePicture alloc] initWithImage:theImage];
     brightnessFilter = [[GPUImageBrightnessFilter alloc]init];
     hazeFilter = [[GPUImageHazeFilter alloc]init];
