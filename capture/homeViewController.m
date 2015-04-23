@@ -28,7 +28,7 @@
     
     NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc]initWithString: @"Capture"];
     [attrStr addAttribute: NSForegroundColorAttributeName value: [UIColor colorWithRed:0 green:0 blue:8 alpha:0.6] range: NSMakeRange(0, 7)];
-    [attrStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"SnellRoundhand-Black" size:38.0] range:NSMakeRange(0, 7)];
+    [attrStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Avenir-Book" size:38.0] range:NSMakeRange(0, 7)];
     
     UILabel *titleLabel = [UILabel new];
     titleLabel.attributedText = attrStr;
